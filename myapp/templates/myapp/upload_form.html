@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html>
+<head><title>Upload</title></head>
+<body>
+  <h1>Upload file / image</h1>
+
+  {% if messages %}
+    {% for msg in messages %}
+      <div>{{ msg }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+
+  <p><a href="{% url 'upload_list' %}">My uploads</a></p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head><title>My Uploads</title></head>
+<body>
+  <h1>My Uploads</h1>
+  <ul>
+    {% for u in uploads %}
+      <li>
+        {{ u.title }} — uploaded at {{ u.uploaded_at }}
+        {% if u.image %}
+          <div>
+            <img src="{{ u.image.url }}" alt="{{ u.title }}" style="max-width:200px;"/>
+          </div>
+        {% endif %}
+        {% if u.file %}
+          <div><a href="{{ u.file.url }}" download>Download file</a></div>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li>No uploads yet.</li>
+    {% endfor %}
+  </ul>
+  <p><a href="{% url 'upload_create' %}">Upload more</a></p>
+</body>
+</html>
